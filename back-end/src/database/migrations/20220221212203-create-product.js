@@ -14,8 +14,9 @@ module.exports = {
       price: {
         type: Sequelize.DOUBLE
       },
-      url_image: {
-        type: Sequelize.STRING
+      urlImage: {
+        type: Sequelize.STRING,
+        field: 'url_image'
       },
     });
   },

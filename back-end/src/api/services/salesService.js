@@ -9,9 +9,9 @@ const getAllSalesService = async () => {
   return { status: 200, answer: sales };
 };
 
-const getAllSalesByCustomerService = async () => {
+const getAllSalesByCustomerService = async (id) => {
   const sales = await Sale.findAll(
-    { where: { user_id: id },
+    { where: { userId: id },
 include: [
           { model: Product, as: 'products', through: { attributes: ['quantity'] } },
         ] },
@@ -19,9 +19,10 @@ include: [
   return { status: 200, answer: sales };
 };
 
-const getAllSalesBySellerService = async () => {
+const getAllSalesBySellerService = async (id) => {
   const sales = await Sale.findAll(
-    { include: [
+    { where: { sellerId: id },
+include: [
           { model: Product, as: 'products', through: { attributes: ['quantity'] } },
         ] },
 );
@@ -30,4 +31,6 @@ const getAllSalesBySellerService = async () => {
 
 module.exports = {
   getAllSalesService,
+  getAllSalesByCustomerService,
+  getAllSalesBySellerService,
 };

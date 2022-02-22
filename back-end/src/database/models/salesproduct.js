@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+const SalesProduct = (sequelize, DataTypes) => {
   const SalesProduct = sequelize.define('SalesProduct', {
     sale_id: DataTypes.INTEGER,
     product_id: DataTypes.INTEGER,
@@ -21,3 +21,5 @@ module.exports = (sequelize, DataTypes) => {
 
   return SalesProduct;
 };
+
+module.exports = SalesProduct

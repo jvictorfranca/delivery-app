@@ -14,7 +14,7 @@ module.exports = {
       seller_id: {
         type: Sequelize.INTEGER
       },
-      total_pice: {
+      total_price: {
         type: Sequelize.DOUBLE
       },
       delivery_address: {

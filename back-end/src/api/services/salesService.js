@@ -29,8 +29,17 @@ include: [
   return { status: 200, answer: sales };
 };
 
+const updateSaleStatusByIdService = async (id, status) => {
+  await Sale.update({ status,
+  }, { where: { id } });
+
+  const updatedSale = await Sale.findOne({ where: { id } });
+  return { status: 200, answer: updatedSale };
+};
+
 module.exports = {
   getAllSalesService,
   getAllSalesByCustomerService,
   getAllSalesBySellerService,
+  updateSaleStatusByIdService,
 };

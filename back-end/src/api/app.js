@@ -6,7 +6,10 @@ const {
    postProductController,
    } = require('./controllers/productsController');
 const { 
-  getAllSalesController, getAllSalesByCustomerController, getAllSalesBySellerController,
+  getAllSalesController,
+  getAllSalesByCustomerController,
+  getAllSalesBySellerController,
+  updateSaleStatusByIdController,
  } = require('./controllers/salesController');
 
 const {
@@ -28,5 +31,7 @@ app.get('/products/:id', getProductByIdController);
 app.get('/sales', getAllSalesController);
 app.get('/users', getAllUsersController);
 app.get('/products', getAllProductsController);
+
+app.put('/sales/:id', updateSaleStatusByIdController);
 
 module.exports = app;

@@ -37,7 +37,7 @@ const postProductService = async (productOBJ) => {
     urlImage: productOBJ.urlImage,
   };
   const product = await Product.create(productToCreate);
-  return { status: 200, answer: product };
+  return { status: 201, answer: product };
 };
 
 module.exports = {

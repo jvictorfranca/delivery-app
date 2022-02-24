@@ -1,11 +1,9 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-<<<<<<< HEAD
+
 const newUserController = require('./controllers/registerUserController');
 const newAdmimUserController = require('./controllers/admimUserController');
-=======
 
->>>>>>> main-group-16-jwt
 const { 
   getAllProductsController,
    getProductByIdController,
@@ -27,15 +25,12 @@ const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const app = express();
 
-<<<<<<< HEAD
+
 app.use(bodyParser.json());
 
 app.post('/products', postProductController);
 app.post('/users', newUserController);
 app.post('/admim/user', newAdmimUserController);
-=======
-app.use(express.json());
->>>>>>> main-group-16-jwt
 
 app.get('/coffee', (_req, res) => res.status(418).end());
 app.get('/sales/customer/:id', getAllSalesByCustomerController);

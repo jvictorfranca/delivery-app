@@ -14,6 +14,7 @@ const {
   getAllSalesByCustomerController,
   getAllSalesBySellerController,
   updateSaleStatusByIdController,
+  createNewSaleController,
  } = require('./controllers/salesController');
 
 const {
@@ -30,6 +31,8 @@ app.use(bodyParser.json());
 app.post('/products', postProductController);
 app.post('/users', newUserController);
 app.post('/admim/user', newAdmimUserController);
+app.post('/sales', createNewSaleController);
+app.post('/login', userLoginController);
 
 app.get('/coffee', (_req, res) => res.status(418).end());
 app.get('/sales/customer/:id', getAllSalesByCustomerController);
@@ -44,7 +47,4 @@ app.get('/products', getAllProductsController);
 app.put('/sales/:id', updateSaleStatusByIdController);
 
 app.use(errorMiddleware);
-
-app.post('/login', userLoginController);
-
 module.exports = app;

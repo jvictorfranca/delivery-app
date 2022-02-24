@@ -25,7 +25,6 @@ const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const app = express();
 
-
 app.use(bodyParser.json());
 
 app.post('/products', postProductController);

@@ -3,6 +3,7 @@ const {
    getAllSalesByCustomerService,
    getAllSalesBySellerService,
    updateSaleStatusByIdService,
+   createNewSaleService,
   } = require('../services/salesService');
 
 const getAllSalesController = async (req, res, next) => {
@@ -45,9 +46,19 @@ const updateSaleStatusByIdController = async (req, res, next) => {
   }
 };
 
+const createNewSaleController = async (req, res, next) => {
+  try {
+    const created = await createNewSaleService(req.body);
+    return res.status(201).json(created);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllSalesController,
   getAllSalesByCustomerController,
   getAllSalesBySellerController,
   updateSaleStatusByIdController,
+  createNewSaleController,
 };

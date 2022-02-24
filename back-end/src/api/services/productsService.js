@@ -1,5 +1,5 @@
+const Joi = require('joi');
 const { Product } = require('../../database/models');
-const { isProductBodyInvalid } = require('./utils/validate');
 
 const getAllProductsService = async () => {
   const products = await Product.findAll(
@@ -22,11 +22,19 @@ const getProductByNameService = async (name) => {
   return { status: 200, answer: product };
 };
 
+const productSchema = Joi.object({
+  name: Joi.string().required(),
+  price: Joi.number().required(),
+  urlImage: Joi.string().uri().required(),
+});
+
 const postProductService = async (productOBJ) => {
-  const isInvalid = isProductBodyInvalid(productOBJ);
-  if (isInvalid) { return { status: 400, answer: { message: isInvalid } }; }
+  const { error } = productSchema.validate(productOBJ);
+  if (error) {
+    const err = { status: 400, message: error.message };
+    throw (err);
+    }
   const alreadyRegistered = await getProductByNameService(productOBJ.name);
-  console.log(alreadyRegistered);
   if (alreadyRegistered.answer) {
     return { status: 400,
     answer: { message: 'Product already exists' } }; 

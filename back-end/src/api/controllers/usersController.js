@@ -1,4 +1,10 @@
-const { getAllUsersService, getUserByIdService } = require('../services/usersService');
+const jwt = require('jsonwebtoken');
+
+const fs = require('fs');
+
+const secret = fs.readFileSync('jwt.evaluation.key', 'utf8');
+
+const { getAllUsersService, getUserByIdService, userLoginService } = require('../services/usersService');
 
 const getAllUsersController = async (req, res, next) => {
   try {
@@ -19,7 +25,21 @@ const getUserByIdController = async (req, res, next) => {
   }
 };
 
+const userLoginController = async (req, res, next) => {
+  try {
+    const user = req.body;
+    const { email, password } = user;
+    
+    const answer = await userLoginService(email, password);
+    
+    return res.status(answer.status).json(answer.answer);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllUsersController,
   getUserByIdController,
+  userLoginController,
 };

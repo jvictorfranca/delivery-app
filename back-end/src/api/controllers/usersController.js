@@ -1,10 +1,8 @@
-const jwt = require('jsonwebtoken');
-
-const fs = require('fs');
-
-const secret = fs.readFileSync('jwt.evaluation.key', 'utf8');
-
-const { getAllUsersService, getUserByIdService, userLoginService } = require('../services/usersService');
+const {
+   getAllUsersService,
+   getUserByIdService,
+   userLoginService,
+  } = require('../services/usersService');
 
 const getAllUsersController = async (req, res, next) => {
   try {

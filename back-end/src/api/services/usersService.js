@@ -1,9 +1,7 @@
-const { User } = require('../../database/models');
-const hash = require('../../utils/hashUnhash')
-
 const jwt = require('jsonwebtoken');
-
 const fs = require('fs');
+const { User } = require('../../database/models');
+const hash = require('./utils/hashUnhash');
 
 const secret = fs.readFileSync('jwt.evaluation.key', 'utf8');
 

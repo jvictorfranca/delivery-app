@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const { User } = require('../../database/models');
+const hash = require('./utils/hashUnhash');
 
 const userSchema = Joi.object({
   name: Joi.string().min(12).required(),
@@ -21,7 +22,9 @@ const admimUserService = async (name, email, password, role) => {
     throw (err);
   }
 
-  const insert = await User.create({ name, email, password, role });
+  const passwordhashed = hash(password);
+
+  const insert = await User.create({ name, email, password: passwordhashed, role });
   return insert;
 };
 

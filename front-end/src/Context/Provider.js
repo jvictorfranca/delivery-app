@@ -7,17 +7,44 @@ import cartContext from './cartContext';
 function Provider({ children }) {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-
   useEffect(() => {
     setTotalPrice(
       cart.reduce((acum, curr) => acum + (curr.price * curr.quantity), 0),
     );
   }, [cart]);
 
-  const contextValue = {
-    cart, setCart, totalPrice,
+  const addProductToCart = (product) => {
+    const productToadd = { ...product, quantity: 1 };
+    const newCart = [...cart, productToadd];
+    setCart(newCart);
   };
-  console.log(totalPrice);
+
+  const removeProductFromCart = (product) => {
+    const newCart = cart.filter((item) => item.name !== product.name);
+    setCart(newCart);
+  };
+
+  const increaseCartProductQuantityByOne = (product) => {
+    cart.find((item) => item.name === product.name).quantity += 1;
+    console.log(totalPrice);
+    setCart(cart);
+  };
+
+  const decreaseCartProductQuantityByOne = (product) => {
+    cart.find((item) => item.name === product.name).quantity -= 1;
+    console.log(totalPrice);
+    setCart(cart);
+  };
+
+  const contextValue = {
+    cart,
+    setCart,
+    totalPrice,
+    addProductToCart,
+    increaseCartProductQuantityByOne,
+    removeProductFromCart,
+    decreaseCartProductQuantityByOne,
+  };
   return (
     <cartContext.Provider value={ contextValue }>
       {children}

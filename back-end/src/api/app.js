@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const cors = require('cors');
 
 const newUserController = require('./controllers/registerUserController');
 const newAdmimUserController = require('./controllers/admimUserController');
@@ -27,6 +28,7 @@ const errorMiddleware = require('./middlewares/errorMiddleware');
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.post('/products', postProductController);
 app.post('/users', newUserController);

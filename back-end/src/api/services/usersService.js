@@ -35,7 +35,14 @@ const userLoginService = async (email, password) => {
 
   const token = jwt.sign({ data: email }, secret, jwtConfig);
 
-  return { status: 200, answer: token };
+  const userToReturn = {
+    name: user.name,
+    id: user.id,
+    email: user.email,
+    token,
+  };
+
+  return { status: 200, answer: userToReturn };
 };
 
 module.exports = {

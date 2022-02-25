@@ -10,7 +10,7 @@ function Provider({ children }) {
 
   useEffect(() => {
     setTotalPrice(
-      cart.reduce((acum, curr) => acum + (curr.price * curr.quantity)),
+      cart.reduce((acum, curr) => acum + (curr.price * curr.quantity), 0),
     );
   }, [cart]);
 

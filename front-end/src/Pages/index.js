@@ -5,6 +5,7 @@ import Register from './Register';
 import Sales from './Sales';
 import Seller from './Seller';
 import User from './User';
+import MainPage from './MainPage';
 
 export default {
   Admin,
@@ -14,4 +15,5 @@ export default {
   Sales,
   Seller,
   User,
+  MainPage,
 };

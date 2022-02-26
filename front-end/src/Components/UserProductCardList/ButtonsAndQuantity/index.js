@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import cartContext from '../../../Context/cartContext';
+import './ButtonsAndQuantity.css';
 
 function ButtonsAndQuantity({ product }) {
   const {
@@ -39,7 +40,7 @@ function ButtonsAndQuantity({ product }) {
   };
 
   return (
-    <div>
+    <div className="button-quantity-box">
       <button type="button" onClick={ decreaseButtonAction }>-</button>
       <p>
         {quantity}

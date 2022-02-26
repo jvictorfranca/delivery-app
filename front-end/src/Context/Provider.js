@@ -8,9 +8,10 @@ function Provider({ children }) {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
-    setTotalPrice(
-      cart.reduce((acum, curr) => acum + (curr.price * curr.quantity), 0),
+    const newTotalPrice = cart.reduce(
+      (acum, curr) => acum + (curr.price * curr.quantity), 0,
     );
+    setTotalPrice(newTotalPrice);
   }, [cart]);
 
   const addProductToCart = (product) => {
@@ -20,20 +21,20 @@ function Provider({ children }) {
   };
 
   const removeProductFromCart = (product) => {
-    const newCart = cart.filter((item) => item.name !== product.name);
+    const newCart = [...cart.filter((item) => item.name !== product.name)];
     setCart(newCart);
   };
 
   const increaseCartProductQuantityByOne = (product) => {
     cart.find((item) => item.name === product.name).quantity += 1;
-    console.log(totalPrice);
-    setCart(cart);
+    const newCart = [...cart];
+    setCart(newCart);
   };
 
   const decreaseCartProductQuantityByOne = (product) => {
     cart.find((item) => item.name === product.name).quantity -= 1;
-    console.log(totalPrice);
-    setCart(cart);
+    const newCart = [...cart];
+    setCart(newCart);
   };
 
   const contextValue = {

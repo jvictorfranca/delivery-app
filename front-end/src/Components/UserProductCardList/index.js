@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getBackEndRequest } from '../../utils/requests';
 import UserProductCard from '../UserProductCard';
+import './UserProductCardList.css';
 
 function UserProductCardList() {
   const [products, setProducts] = useState([]);
@@ -13,7 +14,7 @@ function UserProductCardList() {
   }, []);
 
   return (
-    <main>
+    <main className="class-list">
       {products.length === 0 ? <p>Loading...</p>
         : products.map((product) => (
           <UserProductCard

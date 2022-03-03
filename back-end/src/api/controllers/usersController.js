@@ -23,17 +23,13 @@ const getUserByIdController = async (req, res, next) => {
   }
 };
 
-const userLoginController = async (req, res, next) => {
-  try {
+const userLoginController = async (req, res) => {
     const user = req.body;
     const { email, password } = user;
     
     const answer = await userLoginService(email, password);
     
     return res.status(answer.status).json(answer.answer);
-  } catch (error) {
-    next(error);
-  }
 };
 
 module.exports = {

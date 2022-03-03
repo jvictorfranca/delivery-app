@@ -27,6 +27,7 @@ const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(cors());
 

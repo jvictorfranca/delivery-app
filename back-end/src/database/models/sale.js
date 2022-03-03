@@ -9,7 +9,7 @@ const Sale = (sequelize, DataTypes) => {
     status: DataTypes.STRING,
   }, {
     timestamps: false,
-    tableName: 'Sales',
+    tableName: 'sales',
     underscored: true
   });
 

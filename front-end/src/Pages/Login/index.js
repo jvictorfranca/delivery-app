@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+
+import './style.css';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState(0);
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const http = axios.create({
     baseURL: 'http://localhost:3001',
     timeout: 30000,
   });
+
+  const history = useHistory();
 
   async function login() {
     try {
@@ -20,14 +25,29 @@ function LoginPage() {
         });
       console.log(response.data);
       localStorage.setItem('user', JSON.stringify(response.data));
+      history.push('/customer/products');
     } catch (error) {
-      console.error(error);
+      setErrorMessage(error.message);
+      console.error(error.message);
     }
   }
 
+  const validateEmail = () => {
+    const emailIsValid = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
+    const enable = emailIsValid.test(email);
+    if (enable) return true;
+    return false;
+  };
+
+  const validatePassword = () => {
+    const min = 6;
+    if (password.length >= min) return true;
+    return false;
+  };
+
   return (
-    <main>
-      Login
+    <main className="main">
+      <span className="title">APP DE DELIVERY</span>
       <input
         data-testid="common_login__input-email"
         placeholder="digite o email"
@@ -38,37 +58,32 @@ function LoginPage() {
         placeholder="digite a senha"
         onChange={ (event) => setPassword(event.target.value) }
       />
-      <button
-        onClick={ login }
-        data-testid="common_login__button-login"
-        type="button"
+      <div className="button-container">
+        <button
+          disabled={ !(validateEmail() && validatePassword()) }
+          onClick={ login }
+          data-testid="common_login__button-login"
+          type="button"
+        >
+          LOGIN
+        </button>
+        <Link to="/register">
+          <button
+            data-testid="common_login__button-register"
+            type="button"
+          >
+            Ainda não tenho conta
+          </button>
+        </Link>
+      </div>
+      <span
+        data-testid="common_login__element-invalid-email"
+        className="error"
       >
-        LOGIN
-      </button>
-      <button
-        data-testid="common_login__button-register"
-        type="button"
-      >
-        Ainda não tenho conta
-      </button>
+        { errorMessage }
+      </span>
     </main>
   );
 }
 
 export default LoginPage;
-
-/* const email = JSON.parse(localStorage.getItem('state')).player.gravatarEmail; */
-
-/* {
-  email: 'lewishamilton@gmail.com',
-  password: '--adm2@21!!--',
-}); */
-
-/* async function getUser() {
-  try {
-    const response = await http.get('/users');
-    console.log(response.data);
-  } catch (error) {
-    console.error(error);
-  }
-} */

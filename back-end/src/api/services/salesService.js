@@ -1,40 +1,40 @@
 const Joi = require('joi');
-const { Sale, Product, SalesProduct } = require('../../database/models');
+const { sale, product, salesProduct } = require('../../database/models');
 
 const getAllSalesService = async () => {
-  const sales = await Sale.findAll(
+  const sales = await sale.findAll(
     { include: [
-          { model: Product, as: 'products', through: { attributes: ['quantity'] } },
+          { model: product, as: 'products', through: { attributes: ['quantity'] } },
         ] },
 );
   return { status: 200, answer: sales };
 };
 
 const getAllSalesByCustomerService = async (id) => {
-  const sales = await Sale.findAll(
+  const sales = await sale.findAll(
     { where: { userId: id },
 include: [
-          { model: Product, as: 'products', through: { attributes: ['quantity'] } },
+          { model: product, as: 'products', through: { attributes: ['quantity'] } },
         ] },
 );
   return { status: 200, answer: sales };
 };
 
 const getAllSalesBySellerService = async (id) => {
-  const sales = await Sale.findAll(
+  const sales = await sale.findAll(
     { where: { sellerId: id },
     include: [
-      { model: Product, as: 'products', through: { attributes: ['quantity'] } },
+      { model: product, as: 'products', through: { attributes: ['quantity'] } },
         ] },
 );
   return { status: 200, answer: sales };
 };
 
 const updateSaleStatusByIdService = async (id, status) => {
-  await Sale.update({ status,
+  await sale.update({ status,
   }, { where: { id } });
 
-  const updatedSale = await Sale.findOne({ where: { id } });
+  const updatedSale = await sale.findOne({ where: { id } });
   return { status: 200, answer: updatedSale };
 };
 
@@ -75,7 +75,7 @@ const createBulkNewSalesProduct = async (arrayProducts, saleId) => {
     const obj = createSalesProductObj(arrayProducts[i], saleId);
     array.push(obj);
   }
-  const created = await SalesProduct.bulkCreate(array);
+  const created = await salesProduct.bulkCreate(array);
   return created;
 };
 
@@ -88,7 +88,7 @@ const createNewSaleService = async (body) => {
     throw (err);
   }
 
-  const created = await Sale.create({
+  const created = await sale.create({
     userId, 
     sellerId,
     totalPrice,

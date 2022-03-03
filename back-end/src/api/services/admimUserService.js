@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { User } = require('../../database/models');
+const { user } = require('../../database/models');
 const hash = require('./utils/hashUnhash');
 
 const userSchema = Joi.object({
@@ -16,7 +16,7 @@ const admimUserService = async (name, email, password, role) => {
     throw (err);
   }
 
-  const ifAlreadyExist = await User.findOne({ where: { email } });
+  const ifAlreadyExist = await user.findOne({ where: { email } });
   if (ifAlreadyExist) {
     const err = { status: 409, message: 'User already exist' };
     throw (err);
@@ -24,7 +24,7 @@ const admimUserService = async (name, email, password, role) => {
 
   const passwordhashed = hash(password);
 
-  const insert = await User.create({ name, email, password: passwordhashed, role });
+  const insert = await user.create({ name, email, password: passwordhashed, role });
   return insert;
 };
 

@@ -8,9 +8,23 @@ function UserProductCard({ product }) {
   return (
     <section className="user-product-card">
 
-      <p>{product.name}</p>
-      <img src={ product.urlImage } alt="product" />
-      <p>{formatPrice(product.price)}</p>
+      <p
+        data-testid="customer_products__element-card-title-"
+      >
+        {product.name}
+
+      </p>
+      <img
+        src={ product.urlImage }
+        alt="product"
+        data-testid="customer_products__img-card-bg-image-"
+      />
+      <p
+        data-testid="customer_products__element-card-price-"
+      >
+        {formatPrice(product.price)}
+
+      </p>
       <ButtonsAndQuantity product={ product } />
 
     </section>

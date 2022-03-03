@@ -41,11 +41,27 @@ function ButtonsAndQuantity({ product }) {
 
   return (
     <div className="button-quantity-box">
-      <button type="button" onClick={ decreaseButtonAction }>-</button>
-      <p>
+      <button
+        type="button"
+        onClick={ decreaseButtonAction }
+        data-testid="customer_products__button-card-rm-item-"
+      >
+        -
+
+      </button>
+      <p
+        data-testid="20: customer_products__input-card-quantity-"
+      >
         {quantity}
       </p>
-      <button type="button" onClick={ addButtonAction }>+</button>
+      <button
+        type="button"
+        onClick={ addButtonAction }
+        data-testid="customer_products__button-card-add-item-"
+      >
+        +
+
+      </button>
     </div>
   );
 }

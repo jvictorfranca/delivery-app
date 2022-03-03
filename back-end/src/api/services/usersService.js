@@ -22,7 +22,7 @@ const getUserByIdService = async (id) => {
 const userLoginService = async (email, password) => {
   const user = await User.findOne({ where: { email } });
     
-  if (!user) return { status: 400, answer: 'bad request' };
+  if (!user) return { hasToken: false, status: 404, answer: 'not found' };
   
   const verifyPassword = hash(password);
   
@@ -35,7 +35,14 @@ const userLoginService = async (email, password) => {
 
   const token = jwt.sign({ data: email }, secret, jwtConfig);
 
-  return { status: 200, answer: token };
+  const userToReturn = {
+    name: user.name,
+    id: user.id,
+    email: user.email,
+    token,
+  };
+
+  return { status: 200, answer: userToReturn };
 };
 
 module.exports = {

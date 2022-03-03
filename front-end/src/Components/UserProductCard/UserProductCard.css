@@ -1,6 +1,7 @@
 .user-product-card {
   align-items: center;
   border: solid black 2px;
+  border-radius: 10%;
   display: flex;
   flex-direction: column;
   height: 250px;
@@ -9,4 +10,19 @@
   padding: 3px;
   text-align: center;
   width: 150px;
+}
+
+.user-product-card img {
+  width: 100%;
+}
+
+
+.user-product-card button {
+  background-color: rgb(204, 167, 99);
+  border-radius: 100%;
+}
+
+.user-product-card button:hover {
+  background-color: rgb(185, 125, 12);
+
 }

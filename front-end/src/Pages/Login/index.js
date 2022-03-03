@@ -57,6 +57,7 @@ function LoginPage() {
         data-testid="common_login__input-password"
         placeholder="digite a senha"
         onChange={ (event) => setPassword(event.target.value) }
+        type="password"
       />
       <div className="button-container">
         <button

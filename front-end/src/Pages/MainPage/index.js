@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 function MainPage() {
   return (
 
-    <Redirect to="/user" />
+    <Redirect to="/login" />
   );
 }
 

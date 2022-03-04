@@ -6,6 +6,7 @@ import Sales from './Sales';
 import Seller from './Seller';
 import UserProducts from './UserProducts';
 import MainPage from './MainPage';
+import Checkout from './Checkout';
 
 export default {
   Admin,
@@ -16,4 +17,5 @@ export default {
   Seller,
   UserProducts,
   MainPage,
+  Checkout,
 };

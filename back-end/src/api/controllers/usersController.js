@@ -2,6 +2,7 @@ const {
    getAllUsersService,
    getUserByIdService,
    userLoginService,
+   getUserSellersService,
   } = require('../services/usersService');
 
 const getAllUsersController = async (req, res, next) => {
@@ -23,6 +24,15 @@ const getUserByIdController = async (req, res, next) => {
   }
 };
 
+const getUserSellersController = async (req, res, next) => {
+  try {
+    const answer = await getUserSellersService();
+    res.status(answer.status).json(answer.answer);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const userLoginController = async (req, res) => {
     const user = req.body;
     const { email, password } = user;
@@ -36,4 +46,5 @@ module.exports = {
   getAllUsersController,
   getUserByIdController,
   userLoginController,
+  getUserSellersController,
 };

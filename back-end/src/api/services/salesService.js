@@ -58,9 +58,9 @@ const createSalesProductObj = (bodyObj, saleId) => {
   const objToReturn = {
     saleId,
     productId: bodyObj.id,
-    quantity: bodyObj.SalesProduct.quantity,
+    quantity: bodyObj.quantity,
   };
- 
+  
   const { error } = salesProductSchema.validate(objToReturn);
   if (error) {
     const err = { status: 400, message: error.message };
@@ -71,7 +71,7 @@ const createSalesProductObj = (bodyObj, saleId) => {
 
 const createBulkNewSalesProduct = async (arrayProducts, saleId) => {
   const array = [];
-  for (let i = 0; i < arrayProducts.length; i += 1) {
+    for (let i = 0; i < arrayProducts.length; i += 1) {
     const obj = createSalesProductObj(arrayProducts[i], saleId);
     array.push(obj);
   }
@@ -81,7 +81,6 @@ const createBulkNewSalesProduct = async (arrayProducts, saleId) => {
 
 const createNewSaleService = async (body) => {
   const { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, saleDate } = body;
-
   const { error } = saleSchema.validate(body);
   if (error) { 
     const err = { status: 400, message: error.message };
@@ -97,7 +96,6 @@ const createNewSaleService = async (body) => {
     saleDate,
     status: 'Pendente',
   });
-
   await createBulkNewSalesProduct(body.products, created.dataValues.id);
 
   return (created);

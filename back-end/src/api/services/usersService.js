@@ -19,6 +19,13 @@ const getUserByIdService = async (id) => {
   return { status: 200, answer: users };
 };
 
+const getUserSellersService = async () => {
+  const users = await user.findAll( 
+    { where: { role: 'seller' }, attributes: ['name', 'id', 'email'] },
+);
+  return { status: 200, answer: users };
+};
+
 const userLoginService = async (email, password) => {
   const userAnswer = await user.findOne({ where: { email } });
     
@@ -50,4 +57,5 @@ module.exports = {
   getAllUsersService,
   getUserByIdService,
   userLoginService,
+  getUserSellersService,
 };

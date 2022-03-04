@@ -156,7 +156,7 @@ describe(requirement(14), () => {
   );
 });
 
-describe.only(requirement(15), () => {
+describe(requirement(15), () => {
   const itemList = action.customer.getRandomProducts();
   showCurrentCart(itemList, requirement(15));
 

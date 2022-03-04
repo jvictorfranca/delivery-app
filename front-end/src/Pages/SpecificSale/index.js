@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import SaleDetail from '../../Components/SaleDetail';
 import SaleItem from '../../Components/SaleItem';
+import UserHeader from '../../Components/UserHeader';
 import { formatPrice } from '../../utils/format';
 import { getBackEndRequest } from '../../utils/requests';
 
 function SpecificSale() {
   const params = useParams();
   const { id } = params;
+  const user = JSON.parse(localStorage.user);
   const [pageSale, setPageSale] = useState();
   useEffect(() => {
     const fetchSale = async () => {
@@ -20,6 +22,7 @@ function SpecificSale() {
   return (
     !pageSale ? 'Loading...' : (
       <main>
+        <UserHeader user={ user } />
         <SaleDetail sale={ pageSale } />
         <table>
           <thead>

@@ -18,6 +18,7 @@ function App() {
         <Route exact component={ Pages.Sales } path="/sales" />
         <Route exact component={ Pages.Checkout } path="/customer/checkout" />
         <Route exact component={ Pages.SpecificSale } path="/customer/orders/:id" />
+        <Route exact component={ Pages.CustomerSales } path="/customer/orders" />
 
       </Switch>
     </Provider>

@@ -1,25 +1,54 @@
 import React, { useEffect, useState } from 'react';
+import propTypes from 'prop-types';
 import { backendUrl } from '../../URLs';
 
-function SellerSelect() {
+function SellerSelect(props) {
+  const { setSelectedParent } = props;
+  const [selected, setSelected] = useState('');
   const [sellers, setSellers] = useState([]);
   useEffect(() => {
     const fetchSellers = async () => {
-      let newSellers = await fetch(`${backendUrl}/users`);
-      newSellers = newSellers.filter((user) => user.role === 'seller');
-      await setSellers(newSellers);
+      const newSellers = await fetch(`${backendUrl}/users/sellers`);
+      const answer = await newSellers.json();
+      await setSellers(answer);
+      await setSelectedParent(answer[0].id);
     };
     fetchSellers();
-  }, []);
-  console.log(sellers);
+  }, [setSelectedParent]);
+  useEffect(() => {
+    setSelectedParent(selected);
+  }, [selected, setSelectedParent]);
+
+  const handleSelectChanges = (e) => {
+    setSelected(e.target.value);
+  };
   return (
     <label htmlFor="sellerSelect">
       P. Vendedora Responsável:
-      <select name="sellerSelect" id="sellerSelect">
-        <option value="hello">hello</option>
+      <select
+        name="sellerSelect"
+        id="sellerSelect"
+        onChange={ handleSelectChanges }
+        data-testid="customer_checkout__select-seller"
+      >
+        {sellers.map(
+          (seller) => (
+            <option
+              key={ seller.id }
+              value={ seller.id }
+            >
+              {seller.name}
+            </option>),
+        )}
       </select>
     </label>
   );
 }
 
 export default SellerSelect;
+
+SellerSelect.propTypes = {
+
+  setSelectedParent: propTypes.func.isRequired,
+
+};

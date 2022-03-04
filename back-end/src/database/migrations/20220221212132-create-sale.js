@@ -17,7 +17,7 @@ module.exports = {
         field: 'seller_id'
       },
       totalPrice: {
-        type: Sequelize.DOUBLE,
+        type: Sequelize.DECIMAL(10,2),
         field: 'total_price'
       },
       deliveryAddress: {

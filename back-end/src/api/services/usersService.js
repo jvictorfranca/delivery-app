@@ -20,8 +20,8 @@ const getUserByIdService = async (id) => {
 };
 
 const getUserSellersService = async () => {
-  const users = await user.findAll(
-    { where: { role: 'seller' } },
+  const users = await user.findAll( 
+    { where: { role: 'seller' }, attributes: ['name', 'id', 'email'] },
 );
   return { status: 200, answer: users };
 };

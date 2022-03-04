@@ -25,7 +25,7 @@ function RegisterPage() {
   const validatePassword = () => {
     const min = 6;
     if (password) {
-      return password.length > min;
+      return password.length >= min;
     }
     return false;
   };

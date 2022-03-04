@@ -7,17 +7,61 @@ import cartContext from './cartContext';
 function Provider({ children }) {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-
   useEffect(() => {
-    setTotalPrice(
-      cart.reduce((acum, curr) => acum + (curr.price * curr.quantity), 0),
+    const newTotalPrice = cart.reduce(
+      (acum, curr) => acum + (curr.price * curr.quantity), 0,
     );
+    setTotalPrice(newTotalPrice);
   }, [cart]);
 
-  const contextValue = {
-    cart, setCart, totalPrice,
+  const addProductToCart = (product) => {
+    const productToadd = { ...product, quantity: 1 };
+    const newCart = [...cart, productToadd];
+    setCart(newCart);
   };
-  console.log(totalPrice);
+
+  const removeProductFromCart = (product) => {
+    const newCart = [...cart.filter((item) => item.name !== product.name)];
+    setCart(newCart);
+  };
+
+  const increaseCartProductQuantityByOne = (product) => {
+    cart.find((item) => item.name === product.name).quantity += 1;
+    const newCart = [...cart];
+    setCart(newCart);
+  };
+
+  const decreaseCartProductQuantityByOne = (product) => {
+    cart.find((item) => item.name === product.name).quantity -= 1;
+    const newCart = [...cart];
+    setCart(newCart);
+  };
+
+  const treatStringToNumber = (string) => {
+    const newValue = parseInt(string, 10);
+    if (!newValue || typeof newValue !== 'number') { return 0; }
+    return newValue;
+  };
+
+  const changeCartProductQuantityByString = async (product, stringNumber) => {
+    const newValue = treatStringToNumber(stringNumber);
+    const cartWithoutProduct = cart.filter(
+      (cartProduct) => cartProduct.name !== product.name,
+    );
+    const newCart = [...cartWithoutProduct, { ...product, quantity: newValue }];
+    setCart(newCart);
+  };
+
+  const contextValue = {
+    cart,
+    setCart,
+    totalPrice,
+    addProductToCart,
+    increaseCartProductQuantityByOne,
+    removeProductFromCart,
+    decreaseCartProductQuantityByOne,
+    changeCartProductQuantityByString,
+  };
   return (
     <cartContext.Provider value={ contextValue }>
       {children}

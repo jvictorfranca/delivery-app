@@ -1,25 +1,25 @@
 const Joi = require('joi');
-const { Product } = require('../../database/models');
+const { product } = require('../../database/models');
 
 const getAllProductsService = async () => {
-  const products = await Product.findAll(
+  const products = await product.findAll(
     { },
 );
   return { status: 200, answer: products };
 };
 
 const getProductByIdService = async (id) => {
-  const product = await Product.findAll(
+  const productAnswer = await product.findAll(
     { where: { id } },
 );
-  return { status: 200, answer: product };
+  return { status: 200, answer: productAnswer };
 };
 
 const getProductByNameService = async (name) => {
-  const product = await Product.findOne(
+  const productAnswer = await product.findOne(
     { where: { name } },
 );
-  return { status: 200, answer: product };
+  return { status: 200, answer: productAnswer };
 };
 
 const productSchema = Joi.object({
@@ -44,8 +44,8 @@ const postProductService = async (productOBJ) => {
     price: productOBJ.price,
     urlImage: productOBJ.urlImage,
   };
-  const product = await Product.create(productToCreate);
-  return { status: 201, answer: product };
+  const productAnswer = await product.create(productToCreate);
+  return { status: 201, answer: productAnswer };
 };
 
 module.exports = {

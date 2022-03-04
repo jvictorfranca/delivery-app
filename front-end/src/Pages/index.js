@@ -4,7 +4,7 @@ import Login from './Login';
 import Register from './Register';
 import Sales from './Sales';
 import Seller from './Seller';
-import User from './User';
+import UserProducts from './UserProducts';
 import MainPage from './MainPage';
 
 export default {
@@ -14,6 +14,6 @@ export default {
   Register,
   Sales,
   Seller,
-  User,
+  UserProducts,
   MainPage,
 };

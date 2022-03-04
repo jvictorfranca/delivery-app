@@ -59,7 +59,7 @@ function RegisterPage() {
             type="text"
             value={ name }
             onChange={ (input) => setName(input.target.value) }
-            data-testid=""
+            data-testid="common_register__input-name"
             placeholder="Seu nome"
           />
         </label>
@@ -70,7 +70,7 @@ function RegisterPage() {
             type="email"
             value={ email }
             onChange={ (input) => setEmail(input.target.value) }
-            data-testid=""
+            data-testid="common_register__input-email"
             placeholder="email@email.com"
           />
         </label>
@@ -81,7 +81,7 @@ function RegisterPage() {
             type="password"
             value={ password }
             onChange={ (input) => setPassword(input.target.value) }
-            data-testid=""
+            data-testid="common_register__input-password"
             placeholder="************"
           />
         </label>
@@ -89,6 +89,7 @@ function RegisterPage() {
           disabled={ !(validatePassword() && validateEmail()) }
           type="button"
           onClick={ () => handleClick() }
+          data-testid="common_register__button-register"
         >
           CADASTRAR
         </button>

@@ -9,14 +9,16 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  localStorage.clear();
-
   const http = axios.create({
     baseURL: 'http://localhost:3001',
     timeout: 30000,
   });
-
   const history = useHistory();
+
+  if (localStorage.user) {
+    const user = JSON.parse(localStorage.user);
+    if (user.role === 'customer') { history.push('/customer/products'); }
+  }
 
   async function login() {
     try {

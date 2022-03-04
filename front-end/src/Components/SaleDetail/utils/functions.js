@@ -27,7 +27,7 @@ export const formatDateNumber = (number) => {
 
 export const formatDate = async (date) => {
   const getDate = new Date(date);
-  const day = getDate.getDay();
+  const day = getDate.getDate();
   const month = getDate.getMonth() + 1;
   const year = getDate.getFullYear();
   const formattedDay = formatDateNumber(day);

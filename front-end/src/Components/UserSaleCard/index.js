@@ -27,7 +27,7 @@ function UserSaleCard({ sale }) {
 
         </p>
         <p
-          data-testid={ ` customer_orders__element-order-date--${sale.id}` }
+          data-testid={ `customer_orders__element-order-date--${sale.id}` }
         >
           {saleDate}
 
@@ -38,7 +38,12 @@ function UserSaleCard({ sale }) {
           {formatSaleNumber(sale.id)}
 
         </p>
-        <p>{formatPrice(sale.totalPrice)}</p>
+        <p
+          data-testid={ `customer_orders__element-card-price--${sale.id}` }
+        >
+          {formatPrice(sale.totalPrice)}
+
+        </p>
       </section>
     </Link>
   );

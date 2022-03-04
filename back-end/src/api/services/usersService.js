@@ -39,6 +39,7 @@ const userLoginService = async (email, password) => {
     name: userAnswer.name,
     id: userAnswer.id,
     email: userAnswer.email,
+    role: userAnswer.role,
     token,
   };
 

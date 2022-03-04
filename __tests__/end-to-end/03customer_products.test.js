@@ -16,6 +16,8 @@ const jwtKey = require("fs")
   .readFileSync("./back-end/jwt.evaluation.key", { encoding: "utf-8" })
   .trim();
 
+  
+
 let database;
 beforeEach(async () => {
   database = global.__DATABASE__;
@@ -154,7 +156,7 @@ describe(requirement(14), () => {
   );
 });
 
-describe(requirement(15), () => {
+describe.only(requirement(15), () => {
   const itemList = action.customer.getRandomProducts();
   showCurrentCart(itemList, requirement(15));
 

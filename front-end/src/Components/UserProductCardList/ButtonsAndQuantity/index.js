@@ -10,6 +10,7 @@ function ButtonsAndQuantity({ product }) {
     removeProductFromCart,
     increaseCartProductQuantityByOne,
     decreaseCartProductQuantityByOne,
+    changeCartProductQuantityByString,
   } = useContext(cartContext);
   const [quantity, setQuantity] = useState();
   useEffect(() => {
@@ -44,20 +45,26 @@ function ButtonsAndQuantity({ product }) {
       <button
         type="button"
         onClick={ decreaseButtonAction }
-        data-testid="customer_products__button-card-rm-item-"
+        data-testid={ `customer_products__button-card-rm-item-${product.id}` }
       >
         -
 
       </button>
-      <p
-        data-testid="20: customer_products__input-card-quantity-"
-      >
-        {quantity}
-      </p>
+
+      <input
+        type="text"
+        value={ quantity }
+        data-testid={ `customer_products__input-card-quantity-${product.id}` }
+        onChange={ (e) => {
+          changeCartProductQuantityByString(product, e.target.value);
+          setQuantity(e.target.value);
+        } }
+      />
+
       <button
         type="button"
         onClick={ addButtonAction }
-        data-testid="customer_products__button-card-add-item-"
+        data-testid={ `customer_products__button-card-add-item-${product.id}` }
       >
         +
 
@@ -71,5 +78,6 @@ export default ButtonsAndQuantity;
 ButtonsAndQuantity.propTypes = {
   product: propTypes.shape({
     name: propTypes.string,
+    id: propTypes.number,
   }).isRequired,
 };

@@ -9,7 +9,7 @@ function UserProductCard({ product }) {
     <section className="user-product-card">
 
       <p
-        data-testid="customer_products__element-card-title-"
+        data-testid={ `customer_products__element-card-title-${product.id}` }
       >
         {product.name}
 
@@ -17,10 +17,10 @@ function UserProductCard({ product }) {
       <img
         src={ product.urlImage }
         alt="product"
-        data-testid="customer_products__img-card-bg-image-"
+        data-testid={ `customer_products__img-card-bg-image-${product.id}` }
       />
       <p
-        data-testid="customer_products__element-card-price-"
+        data-testid={ `customer_products__element-card-price-${product.id}` }
       >
         {formatPrice(product.price)}
 
@@ -35,8 +35,9 @@ export default UserProductCard;
 
 UserProductCard.propTypes = {
   product: propTypes.shape({
-    name: propTypes.string.isRequired,
-    urlImage: propTypes.string.isRequired,
-    price: propTypes.number.isRequired,
+    name: propTypes.string,
+    urlImage: propTypes.string,
+    price: propTypes.number,
+    id: propTypes.number,
   }).isRequired,
 };

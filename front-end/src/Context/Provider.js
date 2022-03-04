@@ -37,6 +37,21 @@ function Provider({ children }) {
     setCart(newCart);
   };
 
+  const treatStringToNumber = (string) => {
+    const newValue = parseInt(string, 10);
+    if (!newValue || typeof newValue !== 'number') { return 0; }
+    return newValue;
+  };
+
+  const changeCartProductQuantityByString = async (product, stringNumber) => {
+    const newValue = treatStringToNumber(stringNumber);
+    const cartWithoutProduct = cart.filter(
+      (cartProduct) => cartProduct.name !== product.name,
+    );
+    const newCart = [...cartWithoutProduct, { ...product, quantity: newValue }];
+    setCart(newCart);
+  };
+
   const contextValue = {
     cart,
     setCart,
@@ -45,6 +60,7 @@ function Provider({ children }) {
     increaseCartProductQuantityByOne,
     removeProductFromCart,
     decreaseCartProductQuantityByOne,
+    changeCartProductQuantityByString,
   };
   return (
     <cartContext.Provider value={ contextValue }>

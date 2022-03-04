@@ -7,12 +7,10 @@ function CartButton() {
   const { totalPrice } = useContext(cartContext);
   const totalPriceFormatted = formatPrice(totalPrice);
   return (
-    <Link to="/cart">
+    <Link to="/customer/checkout">
       Carrinho
-      {' '}
-      Total:
-      {' '}
-      {totalPriceFormatted}
+      <p data-testid="customer_products__checkout-bottom-value">{totalPriceFormatted}</p>
+
     </Link>
   );
 }

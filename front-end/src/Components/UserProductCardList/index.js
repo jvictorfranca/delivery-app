@@ -12,7 +12,6 @@ function UserProductCardList() {
     };
     fetchData();
   }, []);
-
   return (
     <main className="class-list">
       {products.length === 0 ? <p>Loading...</p>

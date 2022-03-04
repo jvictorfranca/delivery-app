@@ -9,6 +9,8 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  localStorage.clear();
+
   const http = axios.create({
     baseURL: 'http://localhost:3001',
     timeout: 30000,
@@ -23,7 +25,6 @@ function LoginPage() {
           email,
           password,
         });
-      console.log(response.data);
       localStorage.setItem('user', JSON.stringify(response.data));
       history.push('/customer/products');
     } catch (error) {

@@ -17,8 +17,18 @@ function RegisterPage() {
 
   const validateEmail = () => {
     const emailIsValid = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
-    const enable = emailIsValid.test(email);
-    if (enable) return true;
+    if (email) {
+      const enable = emailIsValid.test(email);
+      return enable;
+    }
+    return false;
+  };
+
+  const validateName = () => {
+    const min = 12;
+    if (name) {
+      return name.length >= min;
+    }
     return false;
   };
 
@@ -86,7 +96,7 @@ function RegisterPage() {
           />
         </label>
         <button
-          disabled={ !(validatePassword() && validateEmail()) }
+          disabled={ !(validatePassword() && validateEmail() && validateName()) }
           type="button"
           onClick={ () => handleClick() }
           data-testid="common_register__button-register"

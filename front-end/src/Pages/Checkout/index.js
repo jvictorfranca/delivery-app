@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import ShipDetails from '../../Components/ShipDetails';
 import UserCheckoutItem from '../../Components/UserCheckoutItem';
 import cartContext from '../../Context/cartContext';
 import { formatPrice } from '../../utils/format';
@@ -34,6 +35,7 @@ function Checkout() {
         {`Total: ${formatPrice(totalPrice)}`}
 
       </p>
+      <ShipDetails />
     </main>
   );
 }

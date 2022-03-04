@@ -22,6 +22,7 @@ const {
    getAllUsersController,
    getUserByIdController,
    userLoginController,
+   getUserSellersController,
   } = require('./controllers/usersController');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 
@@ -40,6 +41,7 @@ app.post('/login', userLoginController);
 app.get('/coffee', (_req, res) => res.status(418).end());
 app.get('/sales/customer/:id', getAllSalesByCustomerController);
 app.get('/sales/seller/:id', getAllSalesBySellerController);
+app.get('/users/sellers', getUserSellersController);
 app.get('/users/:id', getUserByIdController);
 app.get('/products/:id', getProductByIdController);
 

@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import cartContext from '../../Context/cartContext';
 import { formatPrice } from '../../utils/format';

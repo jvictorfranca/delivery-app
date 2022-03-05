@@ -45,7 +45,7 @@ function SpecificSale() {
 
         </table>
         <p
-          data-testid="customer_checkout__element-order-total-price"
+          data-testid="customer_order_details__element-order-total-price"
         >
           {`Total: ${formatPrice(pageSale.totalPrice)}`}
 

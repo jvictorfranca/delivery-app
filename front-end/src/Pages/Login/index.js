@@ -18,6 +18,8 @@ function LoginPage() {
   if (localStorage.user) {
     const user = JSON.parse(localStorage.user);
     if (user.role === 'customer') { history.push('/customer/products'); }
+    if (user.role === 'administrator') { history.push('/admin/manage'); }
+    if (user.role === 'seller') { history.push('/seller/orders'); }
   }
 
   async function login() {

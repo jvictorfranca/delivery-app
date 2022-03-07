@@ -10,6 +10,16 @@ const getAllSalesService = async () => {
   return { status: 200, answer: sales };
 };
 
+const getSalesByIdService = async (id) => {
+  const sales = await sale.findOne(
+    { where: { id },
+include: [
+          { model: product, as: 'products', through: { attributes: ['quantity'] } },
+        ] },
+);
+  return { status: 200, answer: sales };
+};
+
 const getAllSalesByCustomerService = async (id) => {
   const sales = await sale.findAll(
     { where: { userId: id },
@@ -107,4 +117,5 @@ module.exports = {
   getAllSalesBySellerService,
   updateSaleStatusByIdService,
   createNewSaleService,
+  getSalesByIdService,
 };

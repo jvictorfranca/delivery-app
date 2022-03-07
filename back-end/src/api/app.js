@@ -16,6 +16,7 @@ const {
   getAllSalesBySellerController,
   updateSaleStatusByIdController,
   createNewSaleController,
+  getSaleByIdController,
  } = require('./controllers/salesController');
 
 const {
@@ -41,6 +42,7 @@ app.post('/login', userLoginController);
 app.get('/coffee', (_req, res) => res.status(418).end());
 app.get('/sales/customer/:id', getAllSalesByCustomerController);
 app.get('/sales/seller/:id', getAllSalesBySellerController);
+app.get('/sales/sale/:id', getSaleByIdController);
 app.get('/users/sellers', getUserSellersController);
 app.get('/users/:id', getUserByIdController);
 app.get('/products/:id', getProductByIdController);

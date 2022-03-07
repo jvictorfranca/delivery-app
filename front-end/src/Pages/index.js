@@ -7,6 +7,8 @@ import Seller from './Seller';
 import UserProducts from './UserProducts';
 import MainPage from './MainPage';
 import Checkout from './Checkout';
+import SpecificSale from './SpecificSale';
+import CustomerSales from './CustomerSales';
 
 export default {
   Admin,
@@ -18,4 +20,6 @@ export default {
   UserProducts,
   MainPage,
   Checkout,
+  SpecificSale,
+  CustomerSales,
 };

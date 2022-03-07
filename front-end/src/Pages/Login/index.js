@@ -27,8 +27,15 @@ function LoginPage() {
           email,
           password,
         });
+      console.error(response.data);
       localStorage.setItem('user', JSON.stringify(response.data));
-      history.push('/customer/products');
+      if (response.data.role === 'customer') {
+        history.push('/customer/products');
+      } else if (response.data.role === 'administrator') {
+        history.push('/admin/manage');
+      } else if (response.data.role === 'seller') {
+        history.push('/seller/orders');
+      }
     } catch (error) {
       setErrorMessage(error.message);
       console.error(error.message);

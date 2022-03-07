@@ -2,6 +2,8 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const cors = require('cors');
 
+const validateJWT = require('./middlewares/validateJWT');
+
 const newUserController = require('./controllers/registerUserController');
 const newAdmimUserController = require('./controllers/admimUserController');
 
@@ -35,7 +37,7 @@ app.use(cors());
 
 app.post('/products', postProductController);
 app.post('/users', newUserController);
-app.post('/admim/user', newAdmimUserController);
+app.post('/admin/user', validateJWT, newAdmimUserController);
 app.post('/sales', createNewSaleController);
 app.post('/login', userLoginController);
 

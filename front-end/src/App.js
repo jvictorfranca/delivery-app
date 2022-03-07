@@ -19,6 +19,15 @@ function App() {
         <Route exact component={ Pages.Checkout } path="/customer/checkout" />
         <Route exact component={ Pages.SpecificSale } path="/customer/orders/:id" />
         <Route exact component={ Pages.CustomerSales } path="/customer/orders" />
+        <Route exact component={ Pages.SellerSales } path="/seller/orders" />
+        <Route exact component={ Pages.SpecificSellerSale } path="/seller/orders/:id" />
+        <Route
+          exact
+          component={
+            Pages.SpecificSellerSales
+          }
+          path="/customer/orders/:id"
+        />
 
       </Switch>
     </Provider>

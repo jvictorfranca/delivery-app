@@ -1,7 +1,6 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const multer = require('multer');
 
 const validateJWT = require('./middlewares/validateJWT');
@@ -46,7 +45,6 @@ const upload = multer(storage);
 const app = express();
 
 app.use(express.static(__dirname));
-console.log(path.join(__dirname, '..', 'api', 'images'));
 
 app.use(cors());
 app.use(bodyParser.json());

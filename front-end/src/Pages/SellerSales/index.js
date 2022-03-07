@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import UserHeader from '../../Components/UserHeader';
-import UserSaleCard from '../../Components/UserSaleCard';
+import SellerHeader from '../../Components/SellerHeader';
+import SellerSaleCard from '../../Components/SellerSaleCard';
 import { getBackEndRequest } from '../../utils/requests';
 
-function CustomerSales() {
+function SellerSales() {
   const [sales, setSales] = useState([]);
   const user = JSON.parse(localStorage.user);
   useEffect(() => {
     const setTheSales = async () => {
-      const salesToSet = await getBackEndRequest(`/sales/customer/${user.id}`);
+      const salesToSet = await getBackEndRequest(`/sales/seller/${user.id}`);
       setSales(salesToSet);
     };
     setTheSales();
   }, [user.id]);
   return (
     <main>
-      <UserHeader user={ user } />
+      <SellerHeader user={ user } />
       {sales.length === 0 ? 'Loading...' : sales.map((sale) => (
-        <UserSaleCard sale={ sale } key={ sale.id } />))}
+        <SellerSaleCard sale={ sale } key={ sale.id } />))}
     </main>
   );
 }
 
-export default CustomerSales;
+export default SellerSales;

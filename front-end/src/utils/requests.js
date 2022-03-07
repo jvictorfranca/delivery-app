@@ -27,7 +27,7 @@ export const putSalesStatusBackEndRequest = async (path, status, token) => {
     headers: { Authorization: token,
       Accept: AcceptString,
       'Content-Type': AcceptString },
-    body: JSON.stringify(status),
+    body: JSON.stringify({ status }),
   };
   let answer = await fetch(`${backendUrl}${path}`, myInit);
   answer = await answer.json();

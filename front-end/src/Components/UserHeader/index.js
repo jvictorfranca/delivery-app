@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import propTypes from 'prop-types';
 
 function UserHeader({ user }) {
+  const history = useHistory();
   return (
     <nav>
       <Link
@@ -21,13 +22,17 @@ function UserHeader({ user }) {
 
       </Link>
 
-      <Link
-        to="/login"
+      <button
+        type="button"
+        onClick={ () => {
+          localStorage.clear();
+          history.push('/login');
+        } }
         data-testid="customer_products__element-navbar-link-logout"
       >
         Sair
 
-      </Link>
+      </button>
 
       <div
         data-testid="customer_products__element-navbar-user-full-name"

@@ -4,7 +4,6 @@ const cors = require('cors');
 const path = require('path');
 const multer = require('multer');
 
-const { dirname } = require('path');
 const validateJWT = require('./middlewares/validateJWT');
 
 const newUserController = require('./controllers/registerUserController');

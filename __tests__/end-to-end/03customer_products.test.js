@@ -16,8 +16,6 @@ const jwtKey = require("fs")
   .readFileSync("./back-end/jwt.evaluation.key", { encoding: "utf-8" })
   .trim();
 
-  
-//testando o push
 let database;
 beforeEach(async () => {
   database = global.__DATABASE__;

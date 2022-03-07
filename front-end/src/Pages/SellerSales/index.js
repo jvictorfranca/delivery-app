@@ -16,8 +16,8 @@ function SellerSales() {
   return (
     <main>
       <SellerHeader user={ user } />
-      {sales.length === 0 ? 'Loading...' : sales.map((sale) => (
-        <SellerSaleCard sale={ sale } key={ sale.id } />))}
+      {sales.length === 0 ? 'Loading...' : sales.map((sale, index) => (
+        <SellerSaleCard sale={ sale } key={ sale.id } index={ index } />))}
     </main>
   );
 }

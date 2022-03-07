@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
   formatDate,
-  formatSaleNumber,
+  // formatSaleNumber,
   formatSaleAdress,
 } from '../SaleDetail/utils/functions';
 import { formatPrice } from '../../utils/format';
@@ -49,7 +49,7 @@ function SellerSaleCard({ sale }) {
         <p
           data-testid={ `seller_orders__element-order-id-${sale.id}` }
         >
-          {formatSaleNumber(sale.id)}
+          {sale.id}
 
         </p>
         <p

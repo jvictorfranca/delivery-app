@@ -1,7 +1,10 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
+const multer = require('multer');
 
+const { dirname } = require('path');
 const validateJWT = require('./middlewares/validateJWT');
 
 const newUserController = require('./controllers/registerUserController');
@@ -11,6 +14,7 @@ const {
   getAllProductsController,
    getProductByIdController,
    postProductController,
+   uploadImageController,
    } = require('./controllers/productsController');
 const { 
   getAllSalesController,
@@ -29,7 +33,21 @@ const {
   } = require('./controllers/usersController');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 
+const storage = multer.diskStorage({
+  destination: (_req, _file, callback) => {
+    callback(null, 'images/');
+  },
+  filename: (req, _file, callback) => {
+    callback(null, `${req.params.id}.jpeg`);
+  },
+});
+
+const upload = multer(storage);
+
 const app = express();
+
+app.use(express.static(__dirname));
+console.log(path.join(__dirname, '..', 'api', 'images'));
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -54,6 +72,7 @@ app.get('/users', getAllUsersController);
 app.get('/products', getAllProductsController);
 
 app.put('/sales/:id', updateSaleStatusByIdController);
+app.put('/products/:id/image/', upload.single('image'), uploadImageController);
 
 app.use(errorMiddleware);
 module.exports = app;

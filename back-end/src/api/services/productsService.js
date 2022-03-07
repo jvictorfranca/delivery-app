@@ -48,8 +48,18 @@ const postProductService = async (productOBJ) => {
   return { status: 201, answer: productAnswer };
 };
 
+const uploadImageService = async (id, imagePath) => {
+  let { answer } = await getProductByIdService(id);
+  answer = { ...answer, image: imagePath };
+  
+    await product.update(id, imagePath); 
+    await product.update({ urlImage: imagePath }, { where: { id } });
+    return { answer, status: 200 };
+  };
+
 module.exports = {
   getAllProductsService,
   getProductByIdService,
   postProductService,
+  uploadImageService,
 };

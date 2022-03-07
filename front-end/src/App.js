@@ -14,7 +14,7 @@ function App() {
         <Route exact component={ Pages.Register } path="/register" />
         <Route exact component={ Pages.UserProducts } path="/customer/products" />
         <Route exact component={ Pages.Seller } path="/seller" />
-        <Route exact component={ Pages.Admin } path="/admin" />
+        <Route exact component={ Pages.Admin } path="/admin/manage" />
         <Route exact component={ Pages.Sales } path="/sales" />
         <Route exact component={ Pages.Checkout } path="/customer/checkout" />
       </Switch>

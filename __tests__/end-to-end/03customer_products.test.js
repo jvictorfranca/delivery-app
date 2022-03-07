@@ -17,7 +17,7 @@ const jwtKey = require("fs")
   .trim();
 
   
-
+//testando o push
 let database;
 beforeEach(async () => {
   database = global.__DATABASE__;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Form from './form';
+import Form from '../../Components/AdmForm/form';
+import List from '../../Components/AdmList/list';
 
 function AdminPage() {
   function exit() {
@@ -41,9 +42,7 @@ function AdminPage() {
       <main>
         <span className="new-user">Cadastrar novo usuário</span>
         <Form />
-        <div>
-          {/* Lista de Usuários */}
-        </div>
+        <List />
       </main>
     </div>
   );

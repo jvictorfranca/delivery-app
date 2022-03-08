@@ -2,8 +2,8 @@ module.exports = {
   up: async (queryInterface, _Sequelize) => {
     await queryInterface.bulkInsert('sales',
       [{
-        user_id: 1,
-        seller_id: 1,
+        user_id: 3,
+        seller_id: 2,
         total_price: 1.5,
         delivery_address: 'Apple Street',
         delivery_number: '55',
@@ -11,8 +11,8 @@ module.exports = {
         status: 'Pendente',
       },
       {
-        user_id: 2,
-        seller_id: 1,
+        user_id: 3,
+        seller_id: 2,
         total_price: 5.5,
         delivery_address: 'Coca Street',
         delivery_number: '50',

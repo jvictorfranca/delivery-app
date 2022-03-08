@@ -36,9 +36,4 @@ export const formatDate = async (date) => {
   return `${formattedDay}/${formattedMonth}/${year}`;
 };
 
-export const formatSaleAdress = async (sale) => {
-  console.log(sale);
-  return sale.adress;
-};
-
 export default formatSaleNumber;

@@ -13,7 +13,6 @@ function CustomerSales() {
     };
     setTheSales();
   }, [user.id]);
-  console.log(sales);
   return (
     <main>
       <UserHeader user={ user } />

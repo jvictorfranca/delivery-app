@@ -18,6 +18,8 @@ function LoginPage() {
   if (localStorage.user) {
     const user = JSON.parse(localStorage.user);
     if (user.role === 'customer') { history.push('/customer/products'); }
+    if (user.role === 'administrator') { history.push('/admin/manage'); }
+    if (user.role === 'seller') { history.push('/seller/orders'); }
   }
 
   async function login() {
@@ -29,13 +31,7 @@ function LoginPage() {
         });
       console.error(response.data);
       localStorage.setItem('user', JSON.stringify(response.data));
-      if (response.data.role === 'customer') {
-        history.push('/customer/products');
-      } else if (response.data.role === 'administrator') {
-        history.push('/admin/manage');
-      } else if (response.data.role === 'seller') {
-        history.push('/seller/orders');
-      }
+      history.push('/');
     } catch (error) {
       setErrorMessage(error.message);
       console.error(error.message);

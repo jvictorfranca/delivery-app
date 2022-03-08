@@ -60,6 +60,7 @@ beforeEach(async () => {
 describe(requirement(27), () => {
   test("O avaliador ira testar se existem data-testids para até os dez primeiros itens contidos na tabela 'sales'", async () => {
     for (const { id } of orderList) {
+      console.log(id)
       await expect(page).toFindElement(
         sellerOrdersPage.element.card.orderId + `[data-testid$='-${id}']`
       );

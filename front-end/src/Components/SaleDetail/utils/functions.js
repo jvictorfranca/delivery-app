@@ -37,8 +37,8 @@ export const formatDate = async (date) => {
 };
 
 export const formatSaleAdress = async (sale) => {
-  console.log(sale);
-  return sale.adress;
+  const addressToReturn = `${sale.deliveryAddress} - ${sale.deliveryNumber}`;
+  return addressToReturn;
 };
 
 export default formatSaleNumber;

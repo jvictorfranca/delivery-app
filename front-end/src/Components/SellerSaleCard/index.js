@@ -3,7 +3,6 @@ import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
   formatDate,
-  // formatSaleNumber,
   formatSaleAdress,
 } from '../SaleDetail/utils/functions';
 import { formatPrice } from '../../utils/format';

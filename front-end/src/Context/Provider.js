@@ -52,6 +52,10 @@ function Provider({ children }) {
     setCart(newCart);
   };
 
+  const clearCart = async () => {
+    await setCart([]);
+  };
+
   const contextValue = {
     cart,
     setCart,
@@ -61,6 +65,7 @@ function Provider({ children }) {
     removeProductFromCart,
     decreaseCartProductQuantityByOne,
     changeCartProductQuantityByString,
+    clearCart,
   };
   return (
     <cartContext.Provider value={ contextValue }>

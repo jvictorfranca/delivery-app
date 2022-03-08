@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
+import io from 'socket.io-client';
 import { formatDate, formatSaleNumber } from './utils/functions';
 import { putSalesStatusBackEndRequest } from '../../utils/requests';
+
+const socket = io.connect('http://localhost:5001');
 
 function SaleDetail(props) {
   const [dateFormated, setDateFormatted] = useState('');
@@ -22,6 +25,12 @@ function SaleDetail(props) {
     putSalesStatusBackEndRequest(`/sales/${sale.id}`, 'Preparando', user.token);
     setSaleStatus('Preparando');
   };
+
+  socket.on('changeStatus', (status) => {
+    if (sale.id === parseInt(status.id, 10)) {
+      setSaleStatus(status.status);
+    }
+  });
 
   const buttonDeliveringStatus = () => {
     putSalesStatusBackEndRequest(`/sales/${sale.id}`, 'Em Trânsito', user.token);

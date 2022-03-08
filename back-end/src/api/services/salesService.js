@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const { sale, product, salesProduct } = require('../../database/models');
+const { io } = require('../serverIo');
 
 const getAllSalesService = async () => {
   const sales = await sale.findAll(
@@ -45,6 +46,7 @@ const updateSaleStatusByIdService = async (id, status) => {
   }, { where: { id } });
 
   const updatedSale = await sale.findOne({ where: { id } });
+  io.emit('changeStatus', { status, id });
   return { status: 200, answer: updatedSale };
 };
 

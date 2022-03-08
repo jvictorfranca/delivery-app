@@ -6,7 +6,7 @@ import { postSalesBackEndRequest } from '../../utils/requests';
 import SellerSelect from '../SellerSelect';
 
 function ShipDetails() {
-  const { cart, totalPrice } = useContext(cartContext);
+  const { cart, totalPrice, clearCart } = useContext(cartContext);
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
   const [selectedSellerId, setSelected] = useState();
@@ -25,6 +25,7 @@ function ShipDetails() {
 
   const finishSale = async () => {
     const answer = await postSalesBackEndRequest('/sales', finishSaleObj, user.token);
+    clearCart();
     history.push(`/customer/orders/${answer.id}`);
   };
   return (

@@ -53,9 +53,17 @@ const userLoginService = async (email, password) => {
   return { status: 200, answer: userToReturn };
 };
 
+const deleteUserService = async (email) => {
+  const deletedUser = await user.destroy( 
+    { where: { email } },
+);
+return { status: 200, answer: deletedUser };
+};
+
 module.exports = {
   getAllUsersService,
   getUserByIdService,
   userLoginService,
   getUserSellersService,
+  deleteUserService,
 };

@@ -3,6 +3,7 @@ const {
    getUserByIdService,
    userLoginService,
    getUserSellersService,
+   deleteUserService,
   } = require('../services/usersService');
 
 const getAllUsersController = async (req, res, next) => {
@@ -42,9 +43,21 @@ const userLoginController = async (req, res) => {
     return res.status(answer.status).json(answer.answer);
 };
 
+const deleteUserController = async (req, res, next) => {
+  const { email } = req.body;
+  
+  try {
+    const answer = await deleteUserService(email);
+    res.status(answer.status).json(answer.answer);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllUsersController,
   getUserByIdController,
   userLoginController,
   getUserSellersController,
+  deleteUserController,
 };

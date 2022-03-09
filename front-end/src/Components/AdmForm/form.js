@@ -31,6 +31,7 @@ function Form() {
       setErrorMessage(error.message);
       console.error(error.message);
     }
+    window.location.reload();
   }
   const validateName = () => {
     const min = 12;

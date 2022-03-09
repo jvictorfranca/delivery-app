@@ -28,6 +28,7 @@ const {
    getUserByIdController,
    userLoginController,
    getUserSellersController,
+   deleteUserController,
   } = require('./controllers/usersController');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 
@@ -70,6 +71,8 @@ app.get('/products', getAllProductsController);
 
 app.put('/sales/:id', updateSaleStatusByIdController);
 app.put('/products/:id/image/', upload.single('image'), uploadImageController);
+
+app.delete('/users', deleteUserController);
 
 app.use(errorMiddleware);
 module.exports = app;
